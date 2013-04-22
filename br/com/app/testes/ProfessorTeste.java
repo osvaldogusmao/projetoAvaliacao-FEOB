@@ -1,10 +1,10 @@
 package br.com.app.testes;
 
 import javax.persistence.EntityManager;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import br.com.app.dao.ProfessorDAO;
 import br.com.app.entidades.Professor;
 import br.com.app.infraestrutura.EntityFactory;
+import java.util.List;
 
 /**
  *
@@ -16,11 +16,17 @@ public class ProfessorTeste {
     
     public ProfessorTeste() {
         this.manager = new EntityFactory().getInstance();
-        this.testSalva();
+       
+        //this.testSalva();
+        
+        
+        
+        for (Professor  p : testLista("Jos")) {
+            System.out.println("Nome : " + p.getNome());
+        }
+        
     }
 
-    
-    
     
     
     public void testSalva(){
@@ -40,7 +46,12 @@ public class ProfessorTeste {
         }else{
             System.out.println("Teste: Salva :Não  Passou");
         }
-        
-    }   
+    }
     
+        public List<Professor> testLista(String nome){
+            
+            return new ProfessorDAO().listaPorNome(nome);
+            //return new ProfessorDAO().lista();
+        }
+      
 }

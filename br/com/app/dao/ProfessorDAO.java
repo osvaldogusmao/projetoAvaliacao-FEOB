@@ -1,11 +1,12 @@
 package br.com.app.dao;
 
+import br.com.app.entidades.Professor;
+import br.com.app.infraestrutura.EntityFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import br.com.app.entidades.Professor;
-import br.com.app.infraestrutura.EntityFactory;
+import javax.persistence.TypedQuery;
 
 /*
  *
@@ -52,16 +53,16 @@ public class ProfessorDAO {
     
     public List<Professor> lista(){
         
-        return manager.createQuery("from PROFESSOR").getResultList();
+        return manager.createQuery("from Professor").getResultList();
         
     }
     
     public List<Professor> listaPorNome(String nome){
         
-        String queryString  = "select * from professor where nome like '%:nome%' ";
+        String queryString  = "from Professor where nome like :nome";
         
-         Query query  = manager.createQuery(queryString);
-        query.setParameter("nome", nome);
+        Query query  = manager. createQuery(queryString);
+        query.setParameter( "nome",  "%"+ nome +"%");
         return query.getResultList();
         
     }

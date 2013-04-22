@@ -21,6 +21,7 @@ public class Resposta implements Serializable {
     private String aluno;
     
     @OneToOne
+    @JoinColumn(name="professor_id")
     private Professor professor;
     
     
