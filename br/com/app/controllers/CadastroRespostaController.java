@@ -4,7 +4,6 @@ package br.com.app.controllers;
 import br.com.app.dao.RespostaDao;
 import br.com.app.entidades.Resposta;
 import br.com.app.form.FrmResposta;
-import java.util.List;
 
 public class CadastroRespostaController {
     private static CadastroRespostaController instancia = new CadastroRespostaController();
@@ -37,7 +36,10 @@ public class CadastroRespostaController {
     }
     
     public void listarPorNome(String nome) {
-            List<Resposta> lista = new RespostaDao().procurar(resposta);
+            //Corrigindo retorno
+            //List<Resposta> lista = new RespostaDao().procurar(resposta);
+        
+            resposta =   new RespostaDao().procurar(resposta);
     }
     
     public void exibirInterfaceGrafica() {
