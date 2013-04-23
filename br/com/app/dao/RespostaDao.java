@@ -68,5 +68,16 @@ public class RespostaDao {
  
         return respostas;
     }
+    
+    public List<Resposta> listaResposta(Long idProfessor){
+        
+        String queryString = "from Resposta where  professor_id = :id ";
+        
+        Query query = manager.createQuery(queryString);
+       return  query.setParameter("id", idProfessor).getResultList();
+    
+    }
+    
+
 
 }

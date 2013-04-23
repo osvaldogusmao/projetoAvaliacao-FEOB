@@ -1,29 +1,30 @@
-
 package br.com.app.form;
 
 import br.com.app.controllers.CadastroProfessorController;
 import br.com.app.entidades.Professor;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmProfessor extends javax.swing.JFrame {
 
     private CadastroProfessorController controller;
 
-    public FrmProfessor getInstance() {
-        return new FrmProfessor(controller);
-    }
-
     public FrmProfessor(CadastroProfessorController controller) {
-        this.controller = controller;
         initComponents();
+        setLocationRelativeTo(null);
+        this.controller = controller;
+        preencheJtable();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -38,16 +39,22 @@ public class FrmProfessor extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        txtProcurar = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         btSalvar = new javax.swing.JMenuItem();
         btExcluir = new javax.swing.JMenuItem();
         btAtualizar = new javax.swing.JMenuItem();
-        btProcurar = new javax.swing.JMenuItem();
+        btListar = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jMenu1.setText("jMenu1");
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
+        jMenu3.setText("jMenu3");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("CADASTRO DE PROFESSORES");
@@ -57,6 +64,7 @@ public class FrmProfessor extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("ID:");
 
+        txtId.setEditable(false);
         txtId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -129,51 +137,33 @@ public class FrmProfessor extends javax.swing.JFrame {
         tabela.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "NOME", "CPF", "TITULAÇÃO"
             }
         ));
-        jScrollPane1.setViewportView(tabela);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Buscar:");
-
-        txtProcurar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtProcurar.setText("Nome");
-        txtProcurar.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtProcurarMouseClicked(evt);
+                tabelaMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tabela);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -183,12 +173,12 @@ public class FrmProfessor extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -199,7 +189,7 @@ public class FrmProfessor extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jMenu2.setText("Menu");
@@ -229,13 +219,21 @@ public class FrmProfessor extends javax.swing.JFrame {
         });
         jMenu2.add(btAtualizar);
 
-        btProcurar.setText("Procurar");
-        btProcurar.addActionListener(new java.awt.event.ActionListener() {
+        btListar.setText("Listar");
+        btListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btProcurarActionPerformed(evt);
+                btListarActionPerformed(evt);
             }
         });
-        jMenu2.add(btProcurar);
+        jMenu2.add(btListar);
+
+        jMenuItem1.setText("Ir Respostas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
 
         jMenuBar2.add(jMenu2);
 
@@ -266,35 +264,49 @@ public class FrmProfessor extends javax.swing.JFrame {
         preencheJtable();
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
-        controller.listarPorNome(txtProcurar.getText());
-    }//GEN-LAST:event_btProcurarActionPerformed
-
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         controller.atualizar();
+        preencheJtable();
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         controller.remover();
+        preencheJtable();
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void txtProcurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProcurarMouseClicked
-        txtProcurar.setText("");
-    }//GEN-LAST:event_txtProcurarMouseClicked
+    private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
+        controller.listar();
+        preencheJtable();
+    }//GEN-LAST:event_btListarActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+       tabela.removeAll();
+        txtId.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
+       txtNome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+       txtCpf.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+       txtTitulacao.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        controller.exibirFormRespostas();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btAtualizar;
     private javax.swing.JMenuItem btExcluir;
-    private javax.swing.JMenuItem btProcurar;
+    private javax.swing.JMenuItem btListar;
     private javax.swing.JMenuItem btSalvar;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -303,15 +315,14 @@ public class FrmProfessor extends javax.swing.JFrame {
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtProcurar;
     private javax.swing.JTextField txtTitulacao;
     // End of variables declaration//GEN-END:variables
 
-    public void sincronizarEntidadeComForm(Professor professor) {
+    public void pegandoDadosDoFormEnviandoEntidade(Professor professor) {
         if (!txtId.getText().equals("")) {
             professor.setId(Long.parseLong(txtId.getText()));
         } else {
-            JOptionPane.showMessageDialog(null, "O id do professor é obrigatório");
+            professor.setId(null);
         }
 
         if (!txtNome.getText().equals("")) {
@@ -321,24 +332,53 @@ public class FrmProfessor extends javax.swing.JFrame {
         }
 
         if (!txtCpf.getText().equals("")) {
-            professor.setNome(txtCpf.getText());
+            professor.setCpf(txtCpf.getText());
         } else {
             JOptionPane.showMessageDialog(null, "O campo cpf é obrigatório");
         }
 
         if (!txtTitulacao.getText().equals("")) {
-            professor.setNome(txtTitulacao.getText());
+            professor.setTitulacao(txtTitulacao.getText());
         } else {
             JOptionPane.showMessageDialog(null, "O campo titulação é obrigatório");
         }
     }
 
+    public void pegandoDadosEntidadeMostrandoForm(Professor professor) {
+
+        if (professor.getId() != null) {
+            txtId.setText(professor.getId().toString());
+        }
+
+        if (professor.getNome() != null) {
+            txtNome.setText(professor.getNome());
+        }
+
+        if (professor.getCpf() != null) {
+            txtCpf.setText(professor.getCpf());
+        }
+
+        if (professor.getTitulacao() != null) {
+            txtTitulacao.setText(professor.getTitulacao());
+        }
+    }
+
     public void preencheJtable() {
+        tabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabela.getColumn("ID").setPreferredWidth(30);
+        tabela.getColumn("NOME").setPreferredWidth(300);
+        tabela.getColumn("CPF").setPreferredWidth(100);
+        tabela.getColumn("TITULAÇÃO").setPreferredWidth(200);
+
         List<Professor> lista = controller.listar();
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+         
+        for (int i = (modelo.getRowCount() - 1); i >= 0; i--) {
+            modelo.removeRow(i);
+        }
 
         for (Professor objeto : lista) {
-            modelo.addRow(new Object[]{objeto.getNome(), objeto.getId(), objeto.getNome(), objeto.getCpf(), objeto.getTitulacao()});
+            modelo.addRow(new Object[]{objeto.getId(), objeto.getNome(), objeto.getCpf(), objeto.getTitulacao()});
         }
     }
 }

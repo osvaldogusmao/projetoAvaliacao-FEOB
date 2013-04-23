@@ -13,11 +13,11 @@ import javax.persistence.TypedQuery;
  *
  * @author osvaldo
  */
-public class ProfessorDAO {
+public class ProfessorDao {
 
     private EntityManager manager;
     
-    public ProfessorDAO() {
+    public ProfessorDao() {
         this.manager = new EntityFactory().getInstance();
     }
     
@@ -62,16 +62,5 @@ public class ProfessorDAO {
         query.setParameter( "nome",  "%"+ nome +"%");
         return query.getResultList();
     }
-    
-    public List<Resposta> listaResposta(Long idProfessor){
         
-        String queryString = "from Resposta where  professor_id = :id ";
-        
-        Query query = manager.createQuery(queryString);
-       return  query.setParameter("id", idProfessor).getResultList();
-       
-
-    }
-    
-    
 }

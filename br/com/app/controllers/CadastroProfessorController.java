@@ -1,9 +1,10 @@
 package br.com.app.controllers;
 
-import br.com.app.dao.ProfessorDAO;
+import br.com.app.dao.ProfessorDao;
 import br.com.app.entidades.Professor;
 import br.com.app.form.FrmProfessor;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class CadastroProfessorController {
     
@@ -11,44 +12,54 @@ public class CadastroProfessorController {
     private FrmProfessor view;
     private Professor professor = new Professor();
     
+    public CadastroProfessorController(){
+    
+    }
+    
     public static CadastroProfessorController getInstancia() {
         return instancia;
     }
     
     public void salvar() {
-        view.sincronizarEntidadeComForm(professor);
+        view.pegandoDadosDoFormEnviandoEntidade(professor);
         if (professor.getId() == null) {
-            new ProfessorDAO().salva(professor);
+            new ProfessorDao().salva(professor);
+         JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
         }
     }
     
     public void atualizar() {
-        view.sincronizarEntidadeComForm(professor);
+        view.pegandoDadosDoFormEnviandoEntidade(professor);
         if (professor.getId() != null) {
-            new ProfessorDAO().atualiza(professor);
+            new ProfessorDao().atualiza(professor);
         }
     }
     
     public void remover() {
-        view.sincronizarEntidadeComForm(professor);
+        view.pegandoDadosDoFormEnviandoEntidade(professor);
         if (professor.getId() != null) {
-            new ProfessorDAO().remove(professor);
+            new ProfessorDao().remove(professor);
         }
     }
     
-    public List listar() {
-        List<Professor> lista = new ProfessorDAO().lista();
+    public List<Professor> listar() {
+        List<Professor> lista = new ProfessorDao().lista();
         return lista;
     }
     
-    public void listarPorNome(String nome) {
-            List<Professor> lista = new ProfessorDAO().listaPorNome(nome);
+    public List<Professor> listarPorNome(String nome) {
+            List<Professor> lista = new ProfessorDao().listaPorNome(nome);
+            return  lista;
     }
     
-    public void exibirInterfaceGrafica() {
+    public void exibirInterfaceGrafica() { 
         if (view == null) {
             view = new FrmProfessor(this);
         }
         view.setVisible(true);
+    }
+    
+    public void exibirFormRespostas(){
+        CadastroRespostaController.getInstancia().exibirInterfaceGrafica();
     }
 }

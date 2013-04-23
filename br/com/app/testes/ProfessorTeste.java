@@ -1,7 +1,8 @@
 package br.com.app.testes;
 
 import javax.persistence.EntityManager;
-import br.com.app.dao.ProfessorDAO;
+import br.com.app.dao.ProfessorDao;
+import br.com.app.dao.RespostaDao;
 import br.com.app.entidades.Professor;
 import br.com.app.entidades.Resposta;
 import br.com.app.infraestrutura.EntityFactory;
@@ -37,7 +38,7 @@ public class ProfessorTeste {
         p.setCpf("111.111.111-11");
         p.setTitulacao("ADS");
         
-        ProfessorDAO dao = new ProfessorDAO();
+        ProfessorDao dao = new ProfessorDao();
        
         p =  dao.salva(p);
         
@@ -50,14 +51,14 @@ public class ProfessorTeste {
     
         public List<Professor> testLista(String nome){
             
-            return new ProfessorDAO().listaPorNome(nome);
-            //return new ProfessorDAO().lista();
+            return new ProfessorDao().listaPorNome(nome);
+            //return new ProfessorDao().lista();
         }
       
         
         public List<Resposta> testListResposta(Long idProfessor){
             
-            return new ProfessorDAO().listaResposta(idProfessor);
+            return new RespostaDao().listaResposta(idProfessor);
             
         }
 }
