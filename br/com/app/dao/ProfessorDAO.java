@@ -3,6 +3,7 @@ package br.com.app.dao;
 import br.com.app.entidades.Professor;
 import br.com.app.entidades.Resposta;
 import br.com.app.infraestrutura.EntityFactory;
+import com.sun.org.glassfish.external.probe.provider.annotations.Probe;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -36,6 +37,8 @@ public class ProfessorDao {
     
     public void remove(Professor professor){
         
+        professor = manager.find(Professor.class, professor.getId());
+        
         EntityTransaction transaction =    manager.getTransaction();
         transaction.begin();
         manager.remove(professor);
@@ -56,11 +59,11 @@ public class ProfessorDao {
         return manager.createQuery("from Professor").getResultList();
     }
     
-    public List<Professor> listaPorNome(String nome){
-        String queryString  = "from Professor where nome like :nome";
+    public List<Resposta> listaPorNome(String nome){
+        String queryString  = "from Resposta r join fetch r.professor p where p.nome like :nome";
         Query query  = manager. createQuery(queryString);
         query.setParameter( "nome",  "%"+ nome +"%");
         return query.getResultList();
     }
-        
+    
 }

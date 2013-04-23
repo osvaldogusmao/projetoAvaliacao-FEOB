@@ -4,17 +4,28 @@
  */
 package br.com.app.form;
 
+import br.com.app.controllers.ListagemFinalController;
+import br.com.app.entidades.Professor;
+import br.com.app.entidades.Resposta;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.ws.Response;
 /**
  *
  * @author Ivan Simionato
  */
 public class FrmListagemFinal extends javax.swing.JFrame {
 
+    private ListagemFinalController controller;
+    
     /**
      * Creates new form FrmListagemFinal
      */
-    public FrmListagemFinal() {
+    public FrmListagemFinal(ListagemFinalController controller) {
         initComponents();
+        this.controller = controller;
     }
 
     /**
@@ -51,6 +62,11 @@ public class FrmListagemFinal extends javax.swing.JFrame {
         jLabel1.setText("Filtrar por nome:");
 
         botaoFiltrar.setText("Filtrar");
+        botaoFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFiltrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,6 +111,35 @@ public class FrmListagemFinal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFiltrarActionPerformed
+        if(!campoFiltrarNome.getText().isEmpty()){
+            preencheJtable(campoFiltrarNome.getText());
+        }else{
+            JOptionPane.showMessageDialog(this, "Preencha o campo Nome");
+        }
+        
+    }//GEN-LAST:event_botaoFiltrarActionPerformed
+
+    public void preencheJtable(String nome) {
+        tabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabela.getColumn("Nome").setPreferredWidth(100);
+        tabela.getColumn("CPF").setPreferredWidth(100);
+        tabela.getColumn("Titulação").setPreferredWidth(100);
+        tabela.getColumn("Resposta").setPreferredWidth(200);
+        tabela.getColumn("Aluno").setPreferredWidth(200);
+
+        List<Resposta> lista = controller.listaPorNome(campoFiltrarNome.getText());
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+         
+        for (int i = (modelo.getRowCount() - 1); i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+
+        for (Resposta r : lista) {
+                modelo.addRow(new Object[]{r.getProfessor().getNome(),  r.getProfessor().getCpf() , r.getProfessor().getTitulacao(), r.getTexto(), r.getAluno()});
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

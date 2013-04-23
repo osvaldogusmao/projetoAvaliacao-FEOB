@@ -1,6 +1,7 @@
 package br.com.app.form;
 
 import br.com.app.controllers.CadastroRespostaController;
+import br.com.app.controllers.ListagemFinalController;
 import br.com.app.entidades.Professor;
 import br.com.app.entidades.Resposta;
 import java.util.List;
@@ -38,7 +39,7 @@ public class FrmResposta extends javax.swing.JFrame {
         btSalvar = new javax.swing.JMenuItem();
         btExcluir = new javax.swing.JMenuItem();
         btAtualizar = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        btnConsultaResposta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,6 +80,11 @@ public class FrmResposta extends javax.swing.JFrame {
         jLabel6.setText("Nome:");
 
         comboProfessor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboProfessorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -153,13 +159,13 @@ public class FrmResposta extends javax.swing.JFrame {
         });
         jMenu1.add(btAtualizar);
 
-        jMenuItem4.setText("Consultar Respostas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultaResposta.setText("Consultar Respostas");
+        btnConsultaResposta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                btnConsultaRespostaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(btnConsultaResposta);
 
         jMenuBar1.add(jMenu1);
 
@@ -223,14 +229,19 @@ public class FrmResposta extends javax.swing.JFrame {
         controller.salvar();
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void btnConsultaRespostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaRespostaActionPerformed
+       new ListagemFinalController().exibirInterface();
+    }//GEN-LAST:event_btnConsultaRespostaActionPerformed
+
+    private void comboProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_comboProfessorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btAtualizar;
     private javax.swing.JMenuItem btExcluir;
     private javax.swing.JMenuItem btSalvar;
+    private javax.swing.JMenuItem btnConsultaResposta;
     private javax.swing.JComboBox comboProfessor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -238,7 +249,6 @@ public class FrmResposta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

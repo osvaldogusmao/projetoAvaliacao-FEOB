@@ -2,6 +2,7 @@ package br.com.app.controllers;
 
 import br.com.app.dao.ProfessorDao;
 import br.com.app.entidades.Professor;
+import br.com.app.entidades.Resposta;
 import br.com.app.form.FrmProfessor;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -47,8 +48,8 @@ public class CadastroProfessorController {
         return lista;
     }
     
-    public List<Professor> listarPorNome(String nome) {
-            List<Professor> lista = new ProfessorDao().listaPorNome(nome);
+    public List<Resposta> listarPorNome(String nome) {
+            List<Resposta> lista = new ProfessorDao().listaPorNome(nome);
             return  lista;
     }
     

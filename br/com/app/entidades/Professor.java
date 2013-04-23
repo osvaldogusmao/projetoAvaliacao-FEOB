@@ -64,5 +64,10 @@ public class Professor {
     public List<Resposta> getRespostas() {
         return respostas;
     }
-   
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
+    
 }
