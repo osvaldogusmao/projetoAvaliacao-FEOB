@@ -3,6 +3,7 @@ package br.com.app.testes;
 import javax.persistence.EntityManager;
 import br.com.app.dao.ProfessorDAO;
 import br.com.app.entidades.Professor;
+import br.com.app.entidades.Resposta;
 import br.com.app.infraestrutura.EntityFactory;
 import java.util.List;
 
@@ -20,9 +21,8 @@ public class ProfessorTeste {
         //this.testSalva();
         
         
-        
-        for (Professor  p : testLista("Jos")) {
-            System.out.println("Nome : " + p.getNome());
+        for (Resposta  r : testListResposta(1L)) {
+            System.out.println(r.getTexto());
         }
         
     }
@@ -54,4 +54,10 @@ public class ProfessorTeste {
             //return new ProfessorDAO().lista();
         }
       
+        
+        public List<Resposta> testListResposta(Long idProfessor){
+            
+            return new ProfessorDAO().listaResposta(idProfessor);
+            
+        }
 }

@@ -13,6 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Resposta implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +24,6 @@ public class Resposta implements Serializable {
     @OneToOne
     @JoinColumn(name="professor_id")
     private Professor professor;
-    
     
 
     public Long getId() {
@@ -57,8 +57,6 @@ public class Resposta implements Serializable {
     public void setTexto(String texto) {
         this.texto = texto;
     }
-    
-    
 
     @Override
     public int hashCode() {
